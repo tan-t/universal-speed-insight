@@ -40,6 +40,9 @@ devDependencies:
   esbuild:
     specifier: ^0.19.8
     version: 0.19.8
+  network-information-types:
+    specifier: ^0.1.1
+    version: 0.1.1(typescript@5.3.2)
   typescript:
     specifier: ^5.3.2
     version: 5.3.2
@@ -2053,6 +2056,14 @@ packages:
     dependencies:
       js-tokens: 4.0.0
     dev: false
+
+  /network-information-types@0.1.1(typescript@5.3.2):
+    resolution: {integrity: sha512-mLXNafJYOkiJB6IlF727YWssTRpXitR+tKSLyA5VAdBi3SOvLf5gtizHgxf241YHPWocnAO/fAhVrB/68tPHDw==}
+    peerDependencies:
+      typescript: '>= 3.0.0'
+    dependencies:
+      typescript: 5.3.2
+    dev: true
 
   /node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
