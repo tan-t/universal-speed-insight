@@ -5234,7 +5234,7 @@
 
             1. Make sure you're passing the awsconfig object to Amplify.configure() in your app's entry point
                 See https://aws-amplify.github.io/docs/js/authentication#configure-your-app for more information
-            
+
             2. There might be multiple conflicting versions of amplify packages in your node_modules.
 				Refer to our docs site for help upgrading Amplify packages (https://docs.amplify.aws/lib/troubleshooting/upgrading/q/platform/js)
         `
@@ -5242,7 +5242,7 @@
     missingAuthConfig: {
       message: AuthErrorStrings.DEFAULT_MSG,
       log: `
-            Error: Amplify has not been configured correctly. 
+            Error: Amplify has not been configured correctly.
             The configuration object is missing required auth properties.
             This error is typically caused by one of the following scenarios:
 
@@ -8679,7 +8679,7 @@
   }(MeasurementEngine);
 
   // src/model.ts
-  var watch = (userId) => {
+  var watch = () => {
     DefaultAmplify.configure({
       Auth: {
         Cognito: {
@@ -8700,12 +8700,12 @@
         doSpeedTest();
       }
     });
-    const doSpeedTest = () => {
-      console.log(Date.now());
-      new LoggingMeasurementEngine().onFinish = (result) => {
+    const doSpeedTest = async () => {
+      const settings = await fetch("https://tan-t.github.io/universal-speed-insight/setting.json").then((x) => x.json());
+      new LoggingMeasurementEngine(settings.CloudflareSpeed ?? void 0).onFinish = (result) => {
         chrome.storage.local.get("userId", (storage) => {
           record2({
-            name: "speedTest",
+            name: "speedTestV2",
             attributes: {
               userId: storage.userId
             },
@@ -8720,19 +8720,7 @@
   };
 
   // src/index.ts
-  var loadUserIdFromChromeStorage = () => {
-    var userId = "";
-    chrome.storage.local.get("userId", (data) => {
-      userId = data.userId;
-      chrome.storage.onChanged.addListener((changes) => {
-        if (changes.userId) {
-          userId = changes.userId.newValue;
-        }
-      });
-    });
-    return () => userId;
-  };
-  watch(loadUserIdFromChromeStorage());
+  watch();
 })();
 /*! Bundled license information:
 

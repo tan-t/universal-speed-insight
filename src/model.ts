@@ -27,8 +27,9 @@ export const watch = (): void => {
     }
   });
 
-  const doSpeedTest = () => {
-    new SpeedTest().onFinish = result => {
+  const doSpeedTest = async () => {
+    const settings = await fetch(process.env.SETTING_ENDPOINT ?? 'https://tan-t.github.io/universal-speed-insight/setting.json').then(x=>x.json());
+    new SpeedTest(settings.CloudflareSpeed ?? undefined).onFinish = result => {
       chrome.storage.local.get('userId', (storage) => {
         record({
           name: "speedTestV2",
